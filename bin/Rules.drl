@@ -1,0 +1,558 @@
+package com.classifier
+import com.classifier.Animal;
+
+/* Regras gerais que tentam determinar a categoria do animal */
+rule "Aquatico"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getHabitat("aquatico"))
+	then
+		a.votePeixes();
+		a.voteAnfibios();
+		a.voteRepteis();
+		a.voteAves();
+		a.voteMamiferos();
+end
+
+rule "Terrestre"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getHabitat("terrestre"))
+	then
+		a.voteAnfibios();
+		a.voteRepteis();
+		a.voteAves();
+		a.voteMamiferos();
+end
+
+rule "Aereo"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getHabitat("aereo"))
+	then
+		a.voteAves();
+		a.voteMamiferos();
+end
+
+rule "Escamas"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getRevestimento("escamas"))
+	then
+		a.votePeixes();
+		a.voteRepteis();
+end
+
+rule "Carapaça"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getRevestimento("carapaca"))
+	then
+		a.voteRepteis();
+end
+
+rule "Pelos"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getRevestimento("pelos"))
+	then
+		a.voteMamiferos();
+end
+
+rule "Pele"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getRevestimento("pele"))
+	then
+		a.voteAnfibios();
+		a.voteMamiferos();
+end
+
+rule "Cartilagem"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getRevestimento("cartilagem"))
+	then
+		a.votePeixes();
+end
+
+rule "Penas"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getRevestimento("penas"))
+	then
+		a.voteAves();
+end
+
+rule "Nada"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getLocomocao("nada"))
+	then
+		a.votePeixes();
+		a.voteAnfibios();
+		a.voteRepteis();
+		a.voteAves();
+		a.voteMamiferos();
+end
+
+rule "Anda"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getLocomocao("anda"))
+	then
+		a.voteAnfibios();
+		a.voteRepteis();
+		a.voteAves();
+		a.voteMamiferos();
+end
+
+rule "Rasteja"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getLocomocao("rasteja"))
+	then
+		a.voteAnfibios();
+		a.voteRepteis();
+		a.voteAves();
+end
+
+rule "Voa"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getLocomocao("voa"))
+	then
+		a.voteAves();
+		a.voteMamiferos();
+end
+
+rule "Oviparo"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getReproducao("oviparo"))
+	then
+		a.voteAnfibios();
+		a.voteRepteis();
+		a.voteAves();
+end
+
+rule "Ovuliparo"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getReproducao("ovuliparo"))
+	then
+		a.votePeixes();
+		a.voteAnfibios();
+end
+
+rule "Viviparo"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getReproducao("viviparo"))
+	then
+		a.voteMamiferos();
+end
+
+rule "Carnivoro"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getAlimentacao("carnivoro"))
+	then
+		a.votePeixes();
+		a.voteAnfibios();
+		a.voteRepteis();
+		a.voteAves();
+		a.voteMamiferos();
+end
+
+rule "Herbivoro"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getAlimentacao("herbivoro"))
+	then
+		a.votePeixes();
+		a.voteRepteis();
+		a.voteAves();
+		a.voteMamiferos();
+end
+
+rule "Branquial"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getRespiracao("branquial"))
+	then
+		a.votePeixes();
+end
+
+rule "Cutanea"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getRespiracao("cutanea"))
+	then
+		a.voteAnfibios();
+end
+
+rule "Pulmonar"
+	no-loop true
+	salience 10
+	when
+		a : Animal(getRespiracao("pulmonar"))
+	then
+		a.voteAnfibios();
+		a.voteRepteis();
+		a.voteAves();
+		a.voteMamiferos();
+end
+
+/* Regras que descartam categorias que não são possíveis */
+
+rule "Exclui_Terrestre"
+	no-loop true
+	salience 5
+	when
+		a : Animal(getHabitat("terrestre"))
+	then
+		a.zeroPeixes();
+end
+
+rule "Exclui_Aereo"
+	no-loop true
+	salience 5
+	when
+		a : Animal(getHabitat("aereo"))
+	then
+		a.zeroPeixes();
+		a.zeroAnfibios();
+		a.zeroRepteis();
+end
+
+rule "Exclui_Escamas"
+	no-loop true
+	salience 5
+	when
+		a : Animal(getRevestimento("escamas"))
+	then
+		a.zeroAnfibios();
+		a.zeroAves();
+		a.zeroMamiferos();
+end
+
+rule "Exclui_Carapaça"
+	no-loop true
+	salience 5
+	when
+		a : Animal(getRevestimento("carapaca"))
+	then
+		a.zeroPeixes();
+		a.zeroAnfibios();
+		a.zeroAves();
+		a.zeroMamiferos();
+end
+
+rule "Exclui_Pelos"
+	no-loop true
+	salience 5
+	when
+		a : Animal(getRevestimento("pelos"))
+	then
+		a.zeroPeixes();
+		a.zeroAnfibios();
+		a.zeroRepteis();
+		a.zeroAves();
+end
+
+rule "Exclui_Pele"
+	no-loop true
+	salience 5
+	when
+		a : Animal(getRevestimento("pele"))
+	then
+		a.zeroPeixes();
+		a.zeroRepteis();
+		a.zeroAves();
+end
+
+rule "Exclui_Cartilagem"
+	no-loop true
+	salience 5
+	when
+		a : Animal(getRevestimento("cartilagem"))
+	then
+		a.zeroAnfibios();
+		a.zeroRepteis();
+		a.zeroAves();
+		a.zeroMamiferos();
+end
+
+rule "Exclui_Penas"
+	no-loop true
+	salience 5
+	when
+		a : Animal(getRevestimento("penas"))
+	then
+		a.zeroPeixes();
+		a.zeroAnfibios();
+		a.zeroRepteis();
+		a.zeroMamiferos();
+end
+
+rule "Exclui_Anda"
+	no-loop true
+	salience 5
+	when
+		a : Animal(getLocomocao("anda"))
+	then
+		a.zeroPeixes();
+end
+
+rule "Exclui_Rasteja"
+	no-loop true
+	salience 5
+	when
+		a : Animal(getLocomocao("rasteja"))
+	then
+		a.zeroPeixes();
+		a.zeroMamiferos();
+end
+
+rule "Exclui_Voa"
+	no-loop true
+	salience 5
+	when
+		a : Animal(getLocomocao("voa"))
+	then
+		a.zeroPeixes();
+		a.zeroAnfibios();
+		a.zeroRepteis();
+end
+
+rule "Exclui_Oviparo"
+	no-loop true
+	salience 5
+	when
+		a : Animal(getReproducao("oviparo"))
+	then
+		a.zeroPeixes();
+		a.zeroMamiferos();
+end
+
+rule "Exclui_Ovuliparo"
+	no-loop true
+	salience 5
+	when
+		a : Animal(getReproducao("ovuliparo"))
+	then
+		a.zeroAves();
+		a.zeroMamiferos();
+		a.zeroRepteis();
+end
+
+rule "Exclui_Viviparo"
+	no-loop true
+	salience 5
+	when
+		a : Animal(getReproducao("viviparo"))
+	then
+		a.zeroPeixes();
+		a.zeroAnfibios();
+		a.zeroRepteis();
+		a.zeroAves();
+end
+
+rule "Exclui_Herbivoro"
+	no-loop true
+	salience 5
+	when
+		a : Animal(getAlimentacao("herbivoro"))
+	then
+		a.zeroAnfibios();
+end
+
+rule "Exclui_Branquial"
+	no-loop true
+	salience 5
+	when
+		a : Animal(getRespiracao("branquial"))
+	then
+		a.zeroAnfibios();
+		a.zeroRepteis();
+		a.zeroAves();
+		a.zeroMamiferos();
+end
+
+rule "Exclui_Cutanea"
+	no-loop true
+	salience 5
+	when
+		a : Animal(getRespiracao("cutanea"))
+	then
+		a.zeroPeixes();
+		a.zeroRepteis();
+		a.zeroAves();
+		a.zeroMamiferos();
+end
+
+rule "Exclui_Pulmonar"
+	no-loop true
+	salience 5
+	when
+		a : Animal(getRespiracao("pulmonar"))
+	then
+		a.zeroPeixes();
+end
+
+/* Regras que determinam animais específicos */
+
+rule "Tubarão"
+	no-loop true
+	salience 1
+	when
+		a : Animal(getHabitat("aquatico"), getRevestimento("cartilagem"), getLocomocao("nada"), 
+				getReproducao("ovuliparo"), getAlimentacao("carnivoro"), getRespiracao("branquial"))
+	then
+		a.setNome("Tubarao");
+end
+
+rule "Salmão"
+	no-loop true
+	salience 1
+	when
+		a : Animal(getHabitat("aquatico"), getRevestimento("escamas"), getLocomocao("nada"), 
+				getReproducao("ovuliparo"), getAlimentacao("carnivoro"), getRespiracao("branquial"))
+	then
+		a.setNome("Salmão");
+end
+
+rule "Sapo"
+	no-loop true
+	salience 1
+	when
+		a : Animal(getHabitat("aquatico"), getHabitat("terrestre"), getRevestimento("pele"), getLocomocao("nada"), 
+				getLocomocao("anda"), getLocomocao("rasteja"), getReproducao("ovuliparo"), getAlimentacao("carnivoro"),
+				getRespiracao("cutanea"), getRespiracao("pulmonar"))
+	then
+		a.setNome("Sapo");
+end
+
+
+rule "Salamandra"
+	no-loop true
+	salience 1
+	when
+		a : Animal(getHabitat("aquatico"), getHabitat("terrestre"), getRevestimento("pele"), getLocomocao("nada"), 
+				getLocomocao("anda"), getLocomocao("rasteja"), getReproducao("oviparo"), getAlimentacao("carnivoro"),
+				getRespiracao("cutanea"), getRespiracao("pulmonar"))
+	then
+		a.setNome("Salamandra");
+end
+
+rule "Jacaré"
+	no-loop true
+	salience 1
+	when
+		a : Animal(getHabitat("aquatico"), getHabitat("terrestre"), getRevestimento("escamas"), getLocomocao("nada"), 
+				getLocomocao("anda"), getReproducao("oviparo"), getAlimentacao("carnivoro"), getRespiracao("pulmonar"))
+	then
+		a.setNome("Jacaré");
+end
+
+rule "Cobra"
+	no-loop true
+	salience 1
+	when
+		a : Animal(getHabitat("aquatico"), getHabitat("terrestre"), getRevestimento("escamas"), getLocomocao("nada"), 
+				getLocomocao("rasteja"), getReproducao("oviparo"), getAlimentacao("carnivoro"), getRespiracao("pulmonar"))
+	then
+		a.setNome("Cobra");
+end
+
+rule "Tartaruga"
+	no-loop true
+	salience 1
+	when
+		a : Animal(getHabitat("aquatico"), getHabitat("terrestre"), getRevestimento("escamas"), getRevestimento("carapaca"),
+		getLocomocao("nada"), getLocomocao("anda"), getReproducao("oviparo"), getAlimentacao("herbivoro"), getRespiracao("pulmonar"))
+	then
+		a.setNome("Tartaruga");
+end
+
+rule "Pinguim"
+	no-loop true
+	salience 1
+	when
+		a : Animal(getHabitat("aquatico"), getHabitat("terrestre"), getRevestimento("penas"), getLocomocao("nada"),
+		getLocomocao("anda"), getReproducao("oviparo"), getAlimentacao("carnivoro"), getRespiracao("pulmonar"))
+	then
+		a.setNome("Pinguim");
+end
+
+rule "Pato"
+	no-loop true
+	salience 1
+	when
+		a : Animal(getHabitat("aquatico"), getHabitat("terrestre"), getHabitat("aereo"), getRevestimento("penas"),
+		getLocomocao("nada"), getLocomocao("anda"), getLocomocao("voa"), getReproducao("oviparo"), getAlimentacao("herbivoro"),
+		getRespiracao("pulmonar"))
+	then
+		a.setNome("Pato");
+end
+
+rule "Galinha"
+	no-loop true
+	salience 1
+	when
+		a : Animal(getHabitat("terrestre"), getRevestimento("penas"), getLocomocao("anda"), getLocomocao("voa"),
+		getReproducao("oviparo"), getAlimentacao("herbivoro"), getRespiracao("pulmonar"))
+	then
+		a.setNome("Galinha");
+end
+
+rule "Macaco"
+	no-loop true
+	salience 1
+	when
+		a : Animal(getHabitat("terrestre"), getRevestimento("pelo"), getLocomocao("anda"),
+		getReproducao("viviparo"), getAlimentacao("herbivoro"), getAlimentacao("carnivoro"), getRespiracao("pulmonar"))
+	then
+		a.setNome("Macaco");
+end
+
+rule "Baleia"
+	no-loop true
+	salience 1
+	when
+		a : Animal(getHabitat("aquatico"), getRevestimento("pele"), getLocomocao("nada"), getReproducao("viviparo"),
+		getAlimentacao("herbivoro"), getAlimentacao("carnivoro"), getRespiracao("pulmonar"))
+	then
+		a.setNome("Baleia");
+end
+
+rule "Morcego"
+	no-loop true
+	salience 1
+	when
+		a : Animal(getHabitat("aereo"), getRevestimento("pelo"), getLocomocao("voa"), getReproducao("viviparo"),
+		getAlimentacao("herbivoro"), getAlimentacao("carnivoro"), getRespiracao("pulmonar"))
+	then
+		a.setNome("Baleia");
+end
