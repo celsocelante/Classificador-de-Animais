@@ -2,7 +2,8 @@ package com.classifier
 import com.classifier.Animal;
 
 /* Regras gerais que tentam determinar a categoria do animal */
-rule "Aquatico"
+
+/*rule "Aquatico"
 	no-loop true
 	salience 10
 	when
@@ -12,7 +13,7 @@ rule "Aquatico"
 		a.voteAnfibios();
 		a.voteRepteis();
 		a.voteAves();
-		a.voteMamiferos();
+		a.voteMamiferos();*/
 end
 
 rule "Terrestre"
@@ -93,7 +94,7 @@ rule "Penas"
 		a.voteAves();
 end
 
-rule "Nada"
+/*rule "Nada"
 	no-loop true
 	salience 10
 	when
@@ -103,7 +104,7 @@ rule "Nada"
 		a.voteAnfibios();
 		a.voteRepteis();
 		a.voteAves();
-		a.voteMamiferos();
+		a.voteMamiferos();*/
 end
 
 rule "Anda"
@@ -169,7 +170,7 @@ rule "Viviparo"
 		a.voteMamiferos();
 end
 
-rule "Carnivoro"
+/*rule "Carnivoro"
 	no-loop true
 	salience 10
 	when
@@ -180,7 +181,7 @@ rule "Carnivoro"
 		a.voteRepteis();
 		a.voteAves();
 		a.voteMamiferos();
-end
+end*/
 
 rule "Herbivoro"
 	no-loop true
