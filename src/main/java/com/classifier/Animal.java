@@ -21,8 +21,7 @@ public class Animal {
 	
 	/* Nome do animal, caso seja possível determiná-lo */
 	private String nome;
-	
-	
+
 	public Animal()
 	{
 		initializeAttributes();
@@ -46,51 +45,51 @@ public class Animal {
 	}
 
 	/* Métodos responsáveis pela adição de características e por verificar a existência delas */
-	public boolean getHabitat(String habitat) {
+	public boolean isHabitat(String habitat) {
 		return this.habitat.contains(habitat);
 	}
 
-	public void setHabitat(String habitat) {
+	public void addHabitat(String habitat) {
 		this.habitat.add(habitat);
 	}
 
-	public boolean getRevestimento(String revestimento) {
+	public boolean isRevestimento(String revestimento) {
 		return this.revestimento.contains(revestimento);
 	}
 
-	public void setRevestimento(String revestimento) {
+	public void addRevestimento(String revestimento) {
 		this.revestimento.add(revestimento);
 	}
 
-	public boolean getLocomocao(String locomocao) {
+	public boolean isLocomocao(String locomocao) {
 		return this.locomocao.contains(locomocao);
 	}
 
-	public void setLocomocao(String locomocao) {
+	public void addLocomocao(String locomocao) {
 		this.locomocao.add(locomocao);
 	}
 
-	public boolean getReproducao(String reproducao) {
+	public boolean isReproducao(String reproducao) {
 		return this.reproducao.contains(reproducao);
 	}
 
-	public void setReproducao(String reproducao) {
+	public void addReproducao(String reproducao) {
 		this.reproducao.add(reproducao);
 	}
 
-	public boolean getAlimentacao(String alimentacao) {
+	public boolean isAlimentacao(String alimentacao) {
 		return this.alimentacao.contains(alimentacao);
 	}
 
-	public void setAlimentacao(String alimentacao) {
+	public void addAlimentacao(String alimentacao) {
 		this.alimentacao.add(alimentacao);
 	}
 
-	public boolean getRespiracao(String respiracao) {
+	public boolean isRespiracao(String respiracao) {
 		return this.respiracao.contains(respiracao);
 	}
 
-	public void setRespiracao(String respiracao) {
+	public void addRespiracao(String respiracao) {
 		this.respiracao.add(respiracao);
 	}
 	
@@ -141,24 +140,24 @@ public class Animal {
 	
 	public String getNome()
 	{
-		if(nome == null)
-		{
-			return "Sem nome";
-		}
-		else
-		{
-			return nome;
-		}
+		return nome;
 	}
 	
 	public void setNome(String nome)
 	{
 		this.nome = nome;
 	}
-	
+
 	/* Exibe os resultados finais da classificação */
 	public void showResults() {
 		int total = peixes + anfibios + repteis + aves + mamiferos;
+		
+		/* Apenas para evitar NaN */
+		if(total == 0)
+		{
+			total = 1;
+		}
+		
 		System.out.println("Peixes: " + ( (float) peixes / total) * 100 + " %");
 		System.out.println("Anfíbios: " +  ( (float) anfibios / total) * 100 + " %");
 		System.out.println("Répteis: " +  ( (float) repteis / total) * 100 + " %");
@@ -168,8 +167,12 @@ public class Animal {
 		/* Exibe o nome do animal, caso seja possível */
 		if(nome != null)
 		{
-			System.out.println("Nome do animal: " + nome + "\n");
+			System.out.println("Nome do animal: " + nome);
 		}
+		
+		// Separador de resultados
+		System.out.println("");
+		
 	}
 
 }

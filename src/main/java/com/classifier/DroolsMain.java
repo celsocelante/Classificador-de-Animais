@@ -8,56 +8,57 @@ import org.drools.builder.KnowledgeBuilderErrors;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
 import org.drools.io.ResourceFactory;
-import org.drools.logger.KnowledgeRuntimeLogger;
-import org.drools.logger.KnowledgeRuntimeLoggerFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 
 
 public class DroolsMain {
+	static Animal animal;
 
     public static final void main(String[] args) {
         try {
             KnowledgeBase kbase = readKnowledgeBase();
             StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
+            /* Entradas hard-coded */
             
-            /* Sapo */
-            Animal animal = new Animal();
-            animal.setHabitat("terrestre");
-            animal.setHabitat("aquatico");
-            animal.setRevestimento("pele");
-            animal.setLocomocao("anda");
-            animal.setLocomocao("rasteja");
-            animal.setLocomocao("nada");
-            animal.setReproducao("ovuliparo");
-            animal.setAlimentacao("carnivoro");
-            animal.setRespiracao("cutanea");
-            animal.setRespiracao("pulmonar");
-            
-            ksession.insert(animal);
-            ksession.fireAllRules();
-            animal.showResults();
-            
-            /* Ave qualquer */
+            /* sapo */
             animal = new Animal();
-            animal.setHabitat("aquatico");
-            animal.setRevestimento("penas");
-            animal.setLocomocao("anda");
-            animal.setLocomocao("nada");
-            animal.setRespiracao("pulmonar");
+            animal.addHabitat("terrestre");
+            animal.addHabitat("aquatico");
+            animal.addRevestimento("pele");
+            animal.addLocomocao("anda");
+            animal.addLocomocao("rasteja");
+            animal.addLocomocao("nada");
+            animal.addReproducao("ovuliparo");
+            animal.addAlimentacao("carnivoro");
+            animal.addRespiracao("cutanea");
+            animal.addRespiracao("pulmonar");
             
             ksession.insert(animal);
             ksession.fireAllRules();
             animal.showResults();
+            /* fim sapo */
             
-            /* Animal confuso 
+            /* animal confuso */
             animal = new Animal();
-            animal.setHabitat("aquatico");
-            animal.setReproducao("ovuliparo");
+            animal.addHabitat("aquatico");
+            animal.addReproducao("ovuliparo");
             
             ksession.insert(animal);
             ksession.fireAllRules();
             animal.showResults();
-            */
+            /* fim animal confuso */
+            
+            /* possível ave */
+            animal = new Animal();
+            animal.addHabitat("aereo");
+            animal.addReproducao("oviparo");
+            animal.addLocomocao("voa");
+            animal.addRevestimento("penas");
+            
+            ksession.insert(animal);
+            ksession.fireAllRules();
+            animal.showResults();
+            /* fim possivel ave */
             
         } catch (Throwable t) {
             t.printStackTrace();

@@ -3,24 +3,24 @@ import com.classifier.Animal;
 
 /* Regras gerais que tentam determinar a categoria do animal */
 
-/*rule "Aquatico"
+rule "Aquatico"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getHabitat("aquatico"))
+		a : Animal(isHabitat("aquatico"))
 	then
 		a.votePeixes();
 		a.voteAnfibios();
 		a.voteRepteis();
 		a.voteAves();
-		a.voteMamiferos();*/
+		a.voteMamiferos();
 end
 
 rule "Terrestre"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getHabitat("terrestre"))
+		a : Animal(isHabitat("terrestre"))
 	then
 		a.voteAnfibios();
 		a.voteRepteis();
@@ -32,7 +32,7 @@ rule "Aereo"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getHabitat("aereo"))
+		a : Animal(isHabitat("aereo"))
 	then
 		a.voteAves();
 		a.voteMamiferos();
@@ -42,7 +42,7 @@ rule "Escamas"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getRevestimento("escamas"))
+		a : Animal(isRevestimento("escamas"))
 	then
 		a.votePeixes();
 		a.voteRepteis();
@@ -52,7 +52,7 @@ rule "Carapaça"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getRevestimento("carapaca"))
+		a : Animal(isRevestimento("carapaca"))
 	then
 		a.voteRepteis();
 end
@@ -61,7 +61,7 @@ rule "Pelos"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getRevestimento("pelos"))
+		a : Animal(isRevestimento("pelos"))
 	then
 		a.voteMamiferos();
 end
@@ -70,7 +70,7 @@ rule "Pele"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getRevestimento("pele"))
+		a : Animal(isRevestimento("pele"))
 	then
 		a.voteAnfibios();
 		a.voteMamiferos();
@@ -80,7 +80,7 @@ rule "Cartilagem"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getRevestimento("cartilagem"))
+		a : Animal(isRevestimento("cartilagem"))
 	then
 		a.votePeixes();
 end
@@ -89,29 +89,29 @@ rule "Penas"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getRevestimento("penas"))
+		a : Animal(isRevestimento("penas"))
 	then
 		a.voteAves();
 end
 
-/*rule "Nada"
+rule "Nada"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getLocomocao("nada"))
+		a : Animal(isLocomocao("nada"))
 	then
 		a.votePeixes();
 		a.voteAnfibios();
 		a.voteRepteis();
 		a.voteAves();
-		a.voteMamiferos();*/
+		a.voteMamiferos();
 end
 
 rule "Anda"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getLocomocao("anda"))
+		a : Animal(isLocomocao("anda"))
 	then
 		a.voteAnfibios();
 		a.voteRepteis();
@@ -123,7 +123,7 @@ rule "Rasteja"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getLocomocao("rasteja"))
+		a : Animal(isLocomocao("rasteja"))
 	then
 		a.voteAnfibios();
 		a.voteRepteis();
@@ -134,7 +134,7 @@ rule "Voa"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getLocomocao("voa"))
+		a : Animal(isLocomocao("voa"))
 	then
 		a.voteAves();
 		a.voteMamiferos();
@@ -144,7 +144,7 @@ rule "Oviparo"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getReproducao("oviparo"))
+		a : Animal(isReproducao("oviparo"))
 	then
 		a.voteAnfibios();
 		a.voteRepteis();
@@ -155,7 +155,7 @@ rule "Ovuliparo"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getReproducao("ovuliparo"))
+		a : Animal(isReproducao("ovuliparo"))
 	then
 		a.votePeixes();
 		a.voteAnfibios();
@@ -165,29 +165,29 @@ rule "Viviparo"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getReproducao("viviparo"))
+		a : Animal(isReproducao("viviparo"))
 	then
 		a.voteMamiferos();
 end
 
-/*rule "Carnivoro"
+rule "Carnivoro"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getAlimentacao("carnivoro"))
+		a : Animal(isAlimentacao("carnivoro"))
 	then
 		a.votePeixes();
 		a.voteAnfibios();
 		a.voteRepteis();
 		a.voteAves();
 		a.voteMamiferos();
-end*/
+end
 
 rule "Herbivoro"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getAlimentacao("herbivoro"))
+		a : Animal(isAlimentacao("herbivoro"))
 	then
 		a.votePeixes();
 		a.voteRepteis();
@@ -199,7 +199,7 @@ rule "Branquial"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getRespiracao("branquial"))
+		a : Animal(isRespiracao("branquial"))
 	then
 		a.votePeixes();
 end
@@ -208,7 +208,7 @@ rule "Cutanea"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getRespiracao("cutanea"))
+		a : Animal(isRespiracao("cutanea"))
 	then
 		a.voteAnfibios();
 end
@@ -217,7 +217,7 @@ rule "Pulmonar"
 	no-loop true
 	salience 10
 	when
-		a : Animal(getRespiracao("pulmonar"))
+		a : Animal(isRespiracao("pulmonar"))
 	then
 		a.voteAnfibios();
 		a.voteRepteis();
@@ -231,7 +231,7 @@ rule "Exclui_Terrestre"
 	no-loop true
 	salience 5
 	when
-		a : Animal(getHabitat("terrestre"))
+		a : Animal(isHabitat("terrestre"))
 	then
 		a.zeroPeixes();
 end
@@ -240,7 +240,7 @@ rule "Exclui_Aereo"
 	no-loop true
 	salience 5
 	when
-		a : Animal(getHabitat("aereo"))
+		a : Animal(isHabitat("aereo"))
 	then
 		a.zeroPeixes();
 		a.zeroAnfibios();
@@ -251,7 +251,7 @@ rule "Exclui_Escamas"
 	no-loop true
 	salience 5
 	when
-		a : Animal(getRevestimento("escamas"))
+		a : Animal(isRevestimento("escamas"))
 	then
 		a.zeroAnfibios();
 		a.zeroAves();
@@ -262,7 +262,7 @@ rule "Exclui_Carapaça"
 	no-loop true
 	salience 5
 	when
-		a : Animal(getRevestimento("carapaca"))
+		a : Animal(isRevestimento("carapaca"))
 	then
 		a.zeroPeixes();
 		a.zeroAnfibios();
@@ -274,7 +274,7 @@ rule "Exclui_Pelos"
 	no-loop true
 	salience 5
 	when
-		a : Animal(getRevestimento("pelos"))
+		a : Animal(isRevestimento("pelos"))
 	then
 		a.zeroPeixes();
 		a.zeroAnfibios();
@@ -286,7 +286,7 @@ rule "Exclui_Pele"
 	no-loop true
 	salience 5
 	when
-		a : Animal(getRevestimento("pele"))
+		a : Animal(isRevestimento("pele"))
 	then
 		a.zeroPeixes();
 		a.zeroRepteis();
@@ -297,7 +297,7 @@ rule "Exclui_Cartilagem"
 	no-loop true
 	salience 5
 	when
-		a : Animal(getRevestimento("cartilagem"))
+		a : Animal(isRevestimento("cartilagem"))
 	then
 		a.zeroAnfibios();
 		a.zeroRepteis();
@@ -309,7 +309,7 @@ rule "Exclui_Penas"
 	no-loop true
 	salience 5
 	when
-		a : Animal(getRevestimento("penas"))
+		a : Animal(isRevestimento("penas"))
 	then
 		a.zeroPeixes();
 		a.zeroAnfibios();
@@ -321,7 +321,7 @@ rule "Exclui_Anda"
 	no-loop true
 	salience 5
 	when
-		a : Animal(getLocomocao("anda"))
+		a : Animal(isLocomocao("anda"))
 	then
 		a.zeroPeixes();
 end
@@ -330,7 +330,7 @@ rule "Exclui_Rasteja"
 	no-loop true
 	salience 5
 	when
-		a : Animal(getLocomocao("rasteja"))
+		a : Animal(isLocomocao("rasteja"))
 	then
 		a.zeroPeixes();
 		a.zeroMamiferos();
@@ -340,7 +340,7 @@ rule "Exclui_Voa"
 	no-loop true
 	salience 5
 	when
-		a : Animal(getLocomocao("voa"))
+		a : Animal(isLocomocao("voa"))
 	then
 		a.zeroPeixes();
 		a.zeroAnfibios();
@@ -351,7 +351,7 @@ rule "Exclui_Oviparo"
 	no-loop true
 	salience 5
 	when
-		a : Animal(getReproducao("oviparo"))
+		a : Animal(isReproducao("oviparo"))
 	then
 		a.zeroPeixes();
 		a.zeroMamiferos();
@@ -361,7 +361,7 @@ rule "Exclui_Ovuliparo"
 	no-loop true
 	salience 5
 	when
-		a : Animal(getReproducao("ovuliparo"))
+		a : Animal(isReproducao("ovuliparo"))
 	then
 		a.zeroAves();
 		a.zeroMamiferos();
@@ -372,7 +372,7 @@ rule "Exclui_Viviparo"
 	no-loop true
 	salience 5
 	when
-		a : Animal(getReproducao("viviparo"))
+		a : Animal(isReproducao("viviparo"))
 	then
 		a.zeroPeixes();
 		a.zeroAnfibios();
@@ -384,7 +384,7 @@ rule "Exclui_Herbivoro"
 	no-loop true
 	salience 5
 	when
-		a : Animal(getAlimentacao("herbivoro"))
+		a : Animal(isAlimentacao("herbivoro"))
 	then
 		a.zeroAnfibios();
 end
@@ -393,7 +393,7 @@ rule "Exclui_Branquial"
 	no-loop true
 	salience 5
 	when
-		a : Animal(getRespiracao("branquial"))
+		a : Animal(isRespiracao("branquial"))
 	then
 		a.zeroAnfibios();
 		a.zeroRepteis();
@@ -405,7 +405,7 @@ rule "Exclui_Cutanea"
 	no-loop true
 	salience 5
 	when
-		a : Animal(getRespiracao("cutanea"))
+		a : Animal(isRespiracao("cutanea"))
 	then
 		a.zeroPeixes();
 		a.zeroRepteis();
@@ -417,7 +417,7 @@ rule "Exclui_Pulmonar"
 	no-loop true
 	salience 5
 	when
-		a : Animal(getRespiracao("pulmonar"))
+		a : Animal(isRespiracao("pulmonar"))
 	then
 		a.zeroPeixes();
 end
@@ -428,29 +428,41 @@ rule "Tubarão"
 	no-loop true
 	salience 1
 	when
-		a : Animal(getHabitat("aquatico"), getRevestimento("cartilagem"), getLocomocao("nada"), 
-				getReproducao("ovuliparo"), getAlimentacao("carnivoro"), getRespiracao("branquial"))
+		a : Animal(isHabitat("aquatico"), !isHabitat("terrestre"), !isHabitat("aereo"),
+		isRevestimento("cartilagem"), !isRevestimento("pele"), !isRevestimento("escamas"), !isRevestimento("pelos"),
+		!isRevestimento("penas"), !isRevestimento("carapaca"),
+		isLocomocao("nada"), !isLocomocao("voa"), !isLocomocao("rasteja"), !isLocomocao("anda"),
+		isReproducao("ovuliparo"), !isReproducao("oviparo"), !isReproducao("viviparo"),
+		isAlimentacao("carnivoro"), !isAlimentacao("herbivoro"), isRespiracao("branquial"),
+		!isRespiracao("cutanea"), !isRespiracao("pulmonar"))
 	then
-		a.setNome("Tubarao");
+		a.setNome("Tubarão");
 end
 
-rule "Salmão"
+/*rule "Tubarão"
 	no-loop true
 	salience 1
 	when
-		a : Animal(getHabitat("aquatico"), getRevestimento("escamas"), getLocomocao("nada"), 
-				getReproducao("ovuliparo"), getAlimentacao("carnivoro"), getRespiracao("branquial"))
+		a : Animal(isHabitat("aquatico"), !isHabitat("terrestre"), !isHabitat("aereo"),
+		isRevestimento("cartilagem"), !isRevestimento("pele"), !isRevestimento("escamas"), !isRevestimento("pelos"),
+		!isRevestimento("penas"), !isRevestimento("carapaca"),
+		isLocomocao("nada"), !isLocomocao("voa"), !isLocomocao("rasteja"), !isLocomocao("anda"),
+		isReproducao("ovuliparo"), !isReproducao("oviparo"), !isReproducao("viviparo"),
+		isAlimentacao("carnivoro"), !isAlimentacao("herbivoro"), isRespiracao("branquial"),
+		!isRespiracao("cutanea"), !isRespiracao("pulmonar"))
 	then
-		a.setNome("Salmão");
-end
+		a.setNome("Tubarão");
+end*/
 
 rule "Sapo"
 	no-loop true
 	salience 1
 	when
-		a : Animal(getHabitat("aquatico"), getHabitat("terrestre"), getRevestimento("pele"), getLocomocao("nada"), 
-				getLocomocao("anda"), getLocomocao("rasteja"), getReproducao("ovuliparo"), getAlimentacao("carnivoro"),
-				getRespiracao("cutanea"), getRespiracao("pulmonar"))
+		a : Animal(isHabitat("aquatico"), isHabitat("terrestre"), !isHabitat("aereo"), isRevestimento("pele"),
+		!isRevestimento("cartilagem"), !isRevestimento("escamas"), !isRevestimento("pelos"), !isRevestimento("penas"), !isRevestimento("carapaca"),
+		isLocomocao("nada"), isLocomocao("anda"), isLocomocao("rasteja"), !isLocomocao("voa"), isReproducao("ovuliparo"), !isReproducao("oviparo"),
+		!isReproducao("viviparo"), isAlimentacao("carnivoro"), !isAlimentacao("herbivoro"), isRespiracao("cutanea"), isRespiracao("pulmonar"),
+		!isRespiracao("branquial"))
 	then
 		a.setNome("Sapo");
 end
@@ -460,9 +472,11 @@ rule "Salamandra"
 	no-loop true
 	salience 1
 	when
-		a : Animal(getHabitat("aquatico"), getHabitat("terrestre"), getRevestimento("pele"), getLocomocao("nada"), 
-				getLocomocao("anda"), getLocomocao("rasteja"), getReproducao("oviparo"), getAlimentacao("carnivoro"),
-				getRespiracao("cutanea"), getRespiracao("pulmonar"))
+		a : Animal(isHabitat("aquatico"), isHabitat("terrestre"), !isHabitat("aereo"), isRevestimento("pele"),
+		!isRevestimento("cartilagem"), !isRevestimento("escamas"), !isRevestimento("pelos"), !isRevestimento("penas"), !isRevestimento("carapaca"),
+		isLocomocao("nada"), isLocomocao("anda"), isLocomocao("rasteja"), !isLocomocao("voa"), !isReproducao("ovuliparo"), isReproducao("oviparo"),
+		!isReproducao("viviparo"), isAlimentacao("carnivoro"), !isAlimentacao("herbivoro"), isRespiracao("cutanea"), isRespiracao("pulmonar"),
+		!isRespiracao("branquial"))
 	then
 		a.setNome("Salamandra");
 end
@@ -471,8 +485,11 @@ rule "Jacaré"
 	no-loop true
 	salience 1
 	when
-		a : Animal(getHabitat("aquatico"), getHabitat("terrestre"), getRevestimento("escamas"), getLocomocao("nada"), 
-				getLocomocao("anda"), getReproducao("oviparo"), getAlimentacao("carnivoro"), getRespiracao("pulmonar"))
+		a : Animal(isHabitat("aquatico"), isHabitat("terrestre"), !isHabitat("aereo"), isRevestimento("escamas"), !isRevestimento("pele"),
+		!isRevestimento("cartilagem"), !isRevestimento("pelos"), !isRevestimento("penas"), !isRevestimento("carapaca"), isLocomocao("nada"), 
+		isLocomocao("anda"), !isLocomocao("rasteja"), !isLocomocao("voa"), !isReproducao("ovuliparo"), isReproducao("oviparo"),
+		!isReproducao("viviparo"), isAlimentacao("carnivoro"), !isAlimentacao("herbivoro"), isRespiracao("pulmonar"), !isRespiracao("cutanea"),
+		!isRespiracao("branquial"))
 	then
 		a.setNome("Jacaré");
 end
@@ -481,8 +498,10 @@ rule "Cobra"
 	no-loop true
 	salience 1
 	when
-		a : Animal(getHabitat("aquatico"), getHabitat("terrestre"), getRevestimento("escamas"), getLocomocao("nada"), 
-				getLocomocao("rasteja"), getReproducao("oviparo"), getAlimentacao("carnivoro"), getRespiracao("pulmonar"))
+		a : Animal(isHabitat("aquatico"), isHabitat("terrestre"), !isHabitat("aereo"), isRevestimento("escamas"), !isRevestimento("pele"),
+		!isRevestimento("cartilagem"), !isRevestimento("pelos"), !isRevestimento("penas"), !isRevestimento("carapaca"), isLocomocao("nada"), 
+		isLocomocao("rasteja"), !isLocomocao("anda"), !isLocomocao("voa"), isReproducao("oviparo"), !isReproducao("ovuliparo"), !isReproducao("viviparo"),
+		isAlimentacao("carnivoro"), !isAlimentacao("herbivoro"), isRespiracao("pulmonar"), !isRespiracao("cutanea"), !isRespiracao("branquial"))
 	then
 		a.setNome("Cobra");
 end
@@ -491,8 +510,10 @@ rule "Tartaruga"
 	no-loop true
 	salience 1
 	when
-		a : Animal(getHabitat("aquatico"), getHabitat("terrestre"), getRevestimento("escamas"), getRevestimento("carapaca"),
-		getLocomocao("nada"), getLocomocao("anda"), getReproducao("oviparo"), getAlimentacao("herbivoro"), getRespiracao("pulmonar"))
+		a : Animal(isHabitat("aquatico"), isHabitat("terrestre"), !isHabitat("aereo"), isRevestimento("escamas"), !isRevestimento("pele"),
+		!isRevestimento("cartilagem"), !isRevestimento("pelos"), !isRevestimento("penas"), isRevestimento("carapaca"), isLocomocao("nada"), 
+		!isLocomocao("rasteja"), isLocomocao("anda"), !isLocomocao("voa"), isReproducao("oviparo"), !isReproducao("ovuliparo"), !isReproducao("viviparo"),
+		!isAlimentacao("carnivoro"), isAlimentacao("herbivoro"), isRespiracao("pulmonar"), !isRespiracao("cutanea"), !isRespiracao("branquial"))
 	then
 		a.setNome("Tartaruga");
 end
@@ -501,8 +522,10 @@ rule "Pinguim"
 	no-loop true
 	salience 1
 	when
-		a : Animal(getHabitat("aquatico"), getHabitat("terrestre"), getRevestimento("penas"), getLocomocao("nada"),
-		getLocomocao("anda"), getReproducao("oviparo"), getAlimentacao("carnivoro"), getRespiracao("pulmonar"))
+		a : Animal(isHabitat("aquatico"), isHabitat("terrestre"), !isHabitat("aereo"), !isRevestimento("escamas"), !isRevestimento("pele"),
+		!isRevestimento("cartilagem"), !isRevestimento("pelos"), isRevestimento("penas"), !isRevestimento("carapaca"), isLocomocao("nada"),
+		isLocomocao("anda"), !isLocomocao("voa"), !isLocomocao("rasteja"), isReproducao("oviparo"), !isReproducao("viviparo"), !isReproducao("ovuliparo"),
+		isAlimentacao("carnivoro"), !isAlimentacao("herbivoro"), isRespiracao("pulmonar"), !isRespiracao("cutanea"), !isRespiracao("branquial"))
 	then
 		a.setNome("Pinguim");
 end
@@ -511,9 +534,10 @@ rule "Pato"
 	no-loop true
 	salience 1
 	when
-		a : Animal(getHabitat("aquatico"), getHabitat("terrestre"), getHabitat("aereo"), getRevestimento("penas"),
-		getLocomocao("nada"), getLocomocao("anda"), getLocomocao("voa"), getReproducao("oviparo"), getAlimentacao("herbivoro"),
-		getRespiracao("pulmonar"))
+		a : Animal(isHabitat("aquatico"), isHabitat("terrestre"), isHabitat("aereo"), !isRevestimento("escamas"), !isRevestimento("pele"),
+		!isRevestimento("cartilagem"), !isRevestimento("pelos"), isRevestimento("penas"), !isRevestimento("carapaca"), isLocomocao("nada"),
+		isLocomocao("anda"), isLocomocao("voa"), !isLocomocao("rasteja"), isReproducao("oviparo"), !isReproducao("viviparo"), !isReproducao("ovuliparo"),
+		!isAlimentacao("carnivoro"), isAlimentacao("herbivoro"), isRespiracao("pulmonar"), !isRespiracao("cutanea"), !isRespiracao("branquial"))
 	then
 		a.setNome("Pato");
 end
@@ -522,8 +546,10 @@ rule "Galinha"
 	no-loop true
 	salience 1
 	when
-		a : Animal(getHabitat("terrestre"), getRevestimento("penas"), getLocomocao("anda"), getLocomocao("voa"),
-		getReproducao("oviparo"), getAlimentacao("herbivoro"), getRespiracao("pulmonar"))
+		a : Animal(!isHabitat("aquatico"), isHabitat("terrestre"), !isHabitat("aereo"), !isRevestimento("escamas"), !isRevestimento("pele"),
+		!isRevestimento("cartilagem"), !isRevestimento("pelos"), isRevestimento("penas"), !isRevestimento("carapaca"), !isLocomocao("nada"),
+		isLocomocao("anda"), isLocomocao("voa"), !isLocomocao("rasteja"), isReproducao("oviparo"), !isReproducao("viviparo"), !isReproducao("ovuliparo"),
+		!isAlimentacao("carnivoro"), isAlimentacao("herbivoro"), isRespiracao("pulmonar"), !isRespiracao("cutanea"), !isRespiracao("branquial"))
 	then
 		a.setNome("Galinha");
 end
@@ -532,8 +558,10 @@ rule "Macaco"
 	no-loop true
 	salience 1
 	when
-		a : Animal(getHabitat("terrestre"), getRevestimento("pelo"), getLocomocao("anda"),
-		getReproducao("viviparo"), getAlimentacao("herbivoro"), getAlimentacao("carnivoro"), getRespiracao("pulmonar"))
+		a : Animal(!isHabitat("aquatico"), isHabitat("terrestre"), !isHabitat("aereo"), !isRevestimento("escamas"), !isRevestimento("pele"),
+		!isRevestimento("cartilagem"), isRevestimento("pelos"), !isRevestimento("penas"), !isRevestimento("carapaca"), !isLocomocao("nada"),
+		isLocomocao("anda"), !isLocomocao("voa"), !isLocomocao("rasteja"), !isReproducao("oviparo"), isReproducao("viviparo"), !isReproducao("ovuliparo"),
+		isAlimentacao("carnivoro"), isAlimentacao("herbivoro"), isRespiracao("pulmonar"), !isRespiracao("cutanea"), !isRespiracao("branquial"))
 	then
 		a.setNome("Macaco");
 end
@@ -542,8 +570,10 @@ rule "Baleia"
 	no-loop true
 	salience 1
 	when
-		a : Animal(getHabitat("aquatico"), getRevestimento("pele"), getLocomocao("nada"), getReproducao("viviparo"),
-		getAlimentacao("herbivoro"), getAlimentacao("carnivoro"), getRespiracao("pulmonar"))
+		a : Animal(isHabitat("aquatico"), !isHabitat("terrestre"), !isHabitat("aereo"), !isRevestimento("escamas"), isRevestimento("pele"),
+		!isRevestimento("cartilagem"), !isRevestimento("pelos"), !isRevestimento("penas"), !isRevestimento("carapaca"), isLocomocao("nada"),
+		!isLocomocao("anda"), !isLocomocao("voa"), !isLocomocao("rasteja"), !isReproducao("oviparo"), isReproducao("viviparo"), !isReproducao("ovuliparo"),
+		isAlimentacao("carnivoro"), isAlimentacao("herbivoro"), isRespiracao("pulmonar"), !isRespiracao("cutanea"), !isRespiracao("branquial"))
 	then
 		a.setNome("Baleia");
 end
@@ -552,8 +582,10 @@ rule "Morcego"
 	no-loop true
 	salience 1
 	when
-		a : Animal(getHabitat("aereo"), getRevestimento("pelo"), getLocomocao("voa"), getReproducao("viviparo"),
-		getAlimentacao("herbivoro"), getAlimentacao("carnivoro"), getRespiracao("pulmonar"))
+		a : Animal(!isHabitat("aquatico"), !isHabitat("terrestre"), isHabitat("aereo"), !isRevestimento("escamas"), !isRevestimento("pele"),
+		!isRevestimento("cartilagem"), isRevestimento("pelos"), !isRevestimento("penas"), !isRevestimento("carapaca"), !isLocomocao("nada"),
+		!isLocomocao("anda"), isLocomocao("voa"), !isLocomocao("rasteja"), !isReproducao("oviparo"), isReproducao("viviparo"), !isReproducao("ovuliparo"),
+		isAlimentacao("carnivoro"), isAlimentacao("herbivoro"), isRespiracao("pulmonar"), !isRespiracao("cutanea"), !isRespiracao("branquial"))
 	then
-		a.setNome("Baleia");
+		a.setNome("Morcego");
 end
